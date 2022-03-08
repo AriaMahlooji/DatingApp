@@ -1,5 +1,7 @@
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { User } from '../Models/User';
 import { AccountService } from '../_services/account.service';
 
@@ -12,9 +14,9 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
 
+  ali: string = "salam";
   loginModel: any={};
-  constructor(public accountService: AccountService) { }
-
+  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
   ngOnInit(): void {
 
   }
@@ -24,10 +26,14 @@ export class NavComponent implements OnInit {
     this.accountService.login(this.loginModel).subscribe(
       (res:any)=>
       {
+        console.log(this.loginModel);
         console.log(res);
+        this.router.navigateByUrl("/members");
       },err=>
       {
         console.log(err);
+        this.toastr.error(err.error );
+
       }
     )
   }
