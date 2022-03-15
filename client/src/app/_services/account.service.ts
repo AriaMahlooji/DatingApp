@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from '../Models/User';
 
 
@@ -10,7 +11,7 @@ import { User } from '../Models/User';
 })
 export class AccountService {
 
-  readonly baseUrl = "https://localhost:5001/api/";
+  readonly baseUrl = environment.apiUrl;
 
 
   private currentUserSource = new ReplaySubject<User>(1);

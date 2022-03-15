@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getUsers();
+
   }
   registerToggle()
   {
@@ -27,12 +27,4 @@ export class HomeComponent implements OnInit {
   {
     this.registerMode = event;
   }
-
-  getUsers()
-  {
-    this.http.get(this.url + "users").subscribe(users => this.users = users);
-  }
-
-
-
 }
