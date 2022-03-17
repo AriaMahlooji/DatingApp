@@ -2,7 +2,6 @@ import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { User } from '../Models/User';
 import { AccountService } from '../_services/account.service';
 
 
@@ -26,12 +25,9 @@ export class NavComponent implements OnInit {
     this.accountService.login(this.loginModel).subscribe(
       (res:any)=>
       {
-        console.log(this.loginModel);
-        console.log(res);
         this.router.navigateByUrl("/members");
       },err=>
       {
-        console.log(err);
         this.toastr.error(err.error );
 
       }
