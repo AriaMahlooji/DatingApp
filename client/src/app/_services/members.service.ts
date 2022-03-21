@@ -39,4 +39,15 @@ export class MembersService {
     this.members[index] = member;
     return this.http.put(this.baseUrl + 'users',member);
   }
+
+  setMainPhoto(photoId: number)
+  {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/'+ photoId,{});
+  }
+0
+  deletePhoto(photoId: number)
+  {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/'+ photoId);
+  }
+
 }

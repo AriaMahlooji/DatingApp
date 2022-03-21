@@ -2,7 +2,8 @@ import { bufferToggle } from "rxjs/operators";
 
 export interface User{
   username : string,
-  token : string
+  token : string,
+  photoUrl: string
 }
 
 // let data: string| number=45;
