@@ -1,10 +1,25 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()">
   <h2 class="text-center text-primary">Sign up</h2>
   <hr>
-  <div class="form-group">
-    <input type="text" class="form-control" name="username" [(ngModel)]="registerModel.username" placeholder="Username">
-  </div>
 
+  <div class="mb-3">
+    <label class="mr-2">I am a:</label>
+    <label class="mr-5">
+      <input type="radio" value="male" formControlName="gender">
+        <span>male</span>
+    </label>
+    <label>
+      <input type="radio" value="female" formControlName="gender">
+        <span>female</span>
+    </label>
+  </div>
+  <app-text-input [formControl]='registerForm.controls["username"]' [type]="'text'" [label]="'username'" ></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["knownAs"]' [type]="'text'" [label]="'knownAs'" ></app-text-input>
+  <app-date-input [formControl]='registerForm.controls["dateOfBirth"]'  [maxDate]="maxDate"  [label]="'date of birth'" ></app-date-input>
+  <app-text-input [formControl]='registerForm.controls["country"]' [type]="'text'" [label]="'country'" ></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["city"]' [type]="'text'" [label]="'city'" ></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["password"]' [type]="'password'" [label]="'password'" ></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [type]="'password'" [label]="'confirm password'" ></app-text-input>
  <!-- <div class="form-group">
     <label>Who is your favorite user</label>
     <select class="form-control">
@@ -13,14 +28,9 @@
   </div>
 <!-- Parent to Child Communication -->
 
-
-  <div class="form-group">
-    <input type="password" class="form-control" name="password" [(ngModel)]="registerModel.password" placeholder="Password" autocomplete="new-password">
-  </div>
-
   <div class="form-group text-center">
-    <button class="btn btn-success mr-2" type="submit">Sign up</button>
+    <button [disabled]="registerForm.invalid" class="btn btn-success mr-2" typ e="submit">Sign up</button>
     <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
   </div>
-
 </form>
+
